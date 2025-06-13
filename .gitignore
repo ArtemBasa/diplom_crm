@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtualenv
+venv/
+
+# SQLite DB
+arka_crm.db
+
+# IDE
+.idea/
+.vscode/
+
+# Diagrams
+docs/diagrams/*.png
