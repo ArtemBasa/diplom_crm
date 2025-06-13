@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{% if category %}Редагування{% else %}Додати{% endif %} категорії{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:600px;">
+    <a href="{{ url_for('supplier_dashboard') }}"
+     class="mb-3 d-inline-flex align-items-center"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    <!-- Юнікод-стрілка, але можна замінити на <i class="bi bi-arrow-left"></i> -->
+    ←
+    <span class="ms-2">Назад</span>
+  </a>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="m-0">{% if category %}Редагувати категорію{% else %}Додати категорію{% endif %}</h2>
+    <div class="d-flex gap-2">
+      {% if category %}
+        <form method="post" action="{{ url_for('supplier_delete_category', cid=category.id) }}">
+          <button type="submit" class="btn-outline-danger-pill">
+            <i class="bi bi-trash me-1"></i> Видалити
+          </button>
+        </form>
+      {% endif %}
+      <button form="catForm" class="btn-primary-pill">
+        <i class="bi bi-save me-1"></i> Зберегти
+      </button>
+    </div>
+  </div>
+
+  <form id="catForm" method="post">
+    <div class="card shadow-sm p-4 rounded">
+      <div class="mb-3">
+        <label for="name" class="form-label">Назва категорії</label>
+        <input type="text"
+               id="name"
+               name="name"
+               class="form-control"
+               placeholder="Введіть назву категорії…"
+               value="{{ category.name if category else '' }}"
+               required
+               minlength="2"
+               maxlength="70">
+        <div class="form-text">Від 2 до 70 символів</div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Реєстрація{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 400px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Реєстрація</h3>
+      <form method="post">
+        <div class="mb-3">
+          <label for="username" class="form-label">Логін</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Пароль</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+          <label for="role" class="form-label">Роль</label>
+          <select class="form-select" id="role" name="role" required>
+            <option value="Supplier">Постачальник</option>
+            <option value="Dropshipper">Дропшипер</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-register w-100">Зареєструватися</button>
+      </form>
+      <p class="text-center mt-3">
+        <a href="{{ url_for('login') }}">Вже є акаунт? Увійти</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

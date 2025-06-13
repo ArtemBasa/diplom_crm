@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Увійти{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 400px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Увійти</h3>
+      <form method="post">
+        <div class="mb-3">
+          <label for="username" class="form-label">Логін</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Пароль</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-register w-100">Увійти</button>
+      </form>
+      <p class="text-center mt-3">
+        <a href="{{ url_for('register') }}">Немає акаунта? Зареєструватися</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} – Arka.cRm</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome для іконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* === Вимоги для «липкого» футера === */
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      padding-top: 15px;
+    }
+    main {
+      flex: 1;
+    }
+
+    /* === СТАРІ СТИЛІ === */
+    :root { --brand-orange: #ff6600; }
+    .bg-brand { background-color: var(--brand-orange) !important; }
+    .text-brand { color: var(--brand-orange) !important; }
+    .btn-register { background-color: var(--brand-orange); color: #fff; }
+    .why .card { border: none; border-radius: .5rem; }
+    .why .card-orange  { background-color: var(--brand-orange); color: #fff; }
+    .why .card-dark    { background-color: #333; color: #fff; }
+
+    .btn-pill {
+      border-radius: 50px !important;
+      padding: .25rem 1rem;
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+    .btn-outline-danger-pill {
+      border-radius: 50px !important;
+      padding: .25rem 1rem;
+      font-size: .9rem;
+      line-height: 1.2;
+      border: 2px solid var(--brand-orange);
+      color: var(--brand-orange) !important;
+      background: transparent;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline-danger-pill:hover {
+      background: var(--brand-orange);
+      color: #fff !important;
+    }
+    .btn-primary-pill {
+      border-radius: 50px !important;
+      padding: .25rem 1rem;
+      font-size: .9rem;
+      line-height: 1.2;
+      background: var(--brand-orange);
+      color: #fff !important;
+      border: 2px solid var(--brand-orange);
+      transition: background .2s, color .2s;
+    }
+    .btn-primary-pill:hover {
+      background: #e65500;
+      color: #fff !important;
+    }
+
+    /* === СТИЛІ ДЛЯ ЛОГОТИПІВ ПАРТНЕРІВ === */
+    .partners img {
+      max-height: 60px;
+      margin: 0 1rem;
+    }
+
+    /* === СТИЛІ ДЛЯ СУЧАСНОГО ФУТЕРА === */
+    .footer-modern {
+      background-color: #222;
+      color: #ddd;
+    }
+    .footer-modern a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-modern a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Arka.cRm</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          {% if session.user_id and session.role == 'Supplier' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('supplier_dashboard') }}">для Постачальника</a>
+            </li>
+          {% endif %}
+          {% if session.user_id and session.role == 'Dropshipper' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('dropshipper_dashboard') }}">для Дропшипера</a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('shop') }}">для Онлайн-магазина</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav align-items-center">
+          {% if session.user_id %}
+            <li class="nav-item me-3 text-white">
+              Роль: <strong>{{ session.role }}</strong>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('logout') }}">Вийти</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Увійти</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-register ms-2" href="{{ url_for('register') }}">Реєстрація</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="container mt-0">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрити"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- СУЧАСНИЙ ФУТЕР -->
+  <footer class="footer-modern py-2 mt-auto">
+    <div class="container text-center">
+
+      <!-- Посилання на політики -->
+      <ul class="list-inline mb-4">
+        <li class="list-inline-item mx-2">
+          <a href="{{ url_for('terms') }}">Terms of Service</a>
+        </li>
+        <li class="list-inline-item mx-2">
+          <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
+        </li>
+        <li class="list-inline-item mx-2">
+          <a href="{{ url_for('sitemap') }}">Sitemap</a>
+        </li>
+        <li class="list-inline-item mx-2">
+          <a href="{{ url_for('privacy_choices') }}">Privacy Choices</a>
+        </li>
+      </ul>
+
+      <!-- випадкова бізнес-фраза -->
+      {% set slogans = [
+        "Надаємо рішення для вашого зростання",
+        "Інновації для вашого успіху",
+        "Ваш розвиток — наша мета",
+        "Стратегія та технології в одному",
+        "Приводимо бізнес до результату",
+        "Оптимізація процесів з турботою",
+        "Індивідуальні рішення для вас",
+        "Забезпечуємо стабільний розвиток",
+        "Ваш успіх — наша пристрасть",
+        "Досягаємо вершин разом"
+      ] %}
+      <div class="text-center mb-4">
+        <p class="fst-italic mb-0">{{ slogans | random }}</p>
+      </div>
+
+      <!-- Іконки месенджерів -->
+      <div class="mb-4">
+        <a href="#" class="mx-3 fs-4"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" class="mx-3 fs-4"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="mx-3 fs-4"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="#" class="mx-3 fs-4"><i class="fab fa-viber"></i></a>
+      </div>
+
+      <small>&copy; 2025 Arka.cRm. Всі права захищені.</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mouseenter', () => card.classList.add('highlight'));
+        card.addEventListener('mouseleave', () => card.classList.remove('highlight'));
+      });
+    });
+  </script>
+</body>
+</html>

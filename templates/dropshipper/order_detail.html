@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Замовлення #{{ order.id }}{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:500px;">
+
+  <!-- Оранжева стрілка «Назад» -->
+  <a href="{{ url_for('dropshipper_orders') }}"
+     class="d-inline-flex align-items-center mb-4"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    ←<span class="ms-2">До списку замовлень</span>
+  </a>
+
+  <h4 class="mb-3">Замовлення #{{ order.id }}</h4>
+
+  <p><strong>Товар:</strong> {{ order.name }}</p>
+  <p><strong>Кількість:</strong> {{ order.quantity }}</p>
+  <p><strong>Ціна за одиницю:</strong> {{ order.price }} грн</p>
+  <p><strong>Знижка на одиницю:</strong> {{ order.discount }} грн</p>
+  <p><strong>Загальна сума:</strong>
+    {{ '%.2f'|format((order.price - order.discount) * order.quantity) }} грн
+  </p>
+  <hr>
+  <p><strong>Отримувач:</strong> {{ order.recipient_name }}</p>
+  <p><strong>Адреса доставки:</strong> {{ order.address }}</p>
+  {% if order.comment %}
+    <p><strong>Ваш коментар:</strong> {{ order.comment }}</p>
+  {% endif %}
+  <p><strong>Статус:</strong> {{ order.status.capitalize() }}</p>
+  <p><strong>Номер відстеження:</strong> {{ order.tracking_number or '—' }}</p>
+  <hr>
+  {% if not order.paid %}
+    <a href="{{ url_for('pay_order', oid=order.id) }}" class="btn btn-register w-100">
+      Перейти до оплати
+    </a>
+  {% else %}
+    <div class="alert alert-success text-center">✅ Замовлення оплачено</div>
+  {% endif %}
+
+</div>
+{% endblock %}

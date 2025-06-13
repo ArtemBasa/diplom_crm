@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Відгуки про постачальника{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <a href="{{ url_for('supplier_dashboard') }}"
+     class="mb-3 d-inline-flex align-items-center"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    <!-- Юнікод-стрілка, але можна замінити на <i class="bi bi-arrow-left"></i> -->
+    ←
+    <span class="ms-2">Назад</span>
+  </a>
+  <h2 class="mb-4">Відгуки про ваші товари</h2>
+  {% for r in reviews %}
+    <div class="mb-3 p-3 border rounded">
+      <div>
+        <strong>{{ r.reviewer }}</strong>
+        <span class="text-warning">{{ '★'*r.rating }}{{ '☆'*(5-r.rating) }}</span>
+        <small class="text-muted">({{ r.product_name }}) – {{ r.created_at }}</small>
+      </div>
+      <p>{{ r.comment }}</p>
+    </div>
+  {% else %}
+    <p class="text-muted">Немає відгуків</p>
+  {% endfor %}
+</div>
+{% endblock %}

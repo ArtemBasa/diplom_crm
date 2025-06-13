@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Головна{% endblock %}
+
+{% block content %}
+  <!-- HERO IMAGE -->
+  <div class="container-fluid p-0">
+    <img src="{{ url_for('static', filename='img/hero.png') }}"
+         class="img-fluid w-100" alt="Hero">
+  </div>
+
+  <!-- WHY US SECTION -->
+  <section class="why py-5">
+    <div class="container">
+      <h2 class="text-center mb-1">Чому саме</h2>
+      <p class="text-center h3 text-brand mb-4">Треба обрати нас?</p>
+      <div class="row gy-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-orange p-4 text-center">
+            <div class="mb-3">
+              <img src="{{ url_for('static', filename='img/icon-professional.png') }}"
+                   alt="Професійний підхід" width="40">
+            </div>
+            <h5>Професійний підхід</h5>
+            <p class="small">Наші експерти допоможуть вам працювати без збою і зайвих витрат.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-dark p-4 text-center">
+            <div class="mb-3">
+              <img src="{{ url_for('static',filename='img/icon-growth.png') }}" alt="Зростання" width="40">
+            </div>
+            <h5>Зростання вашого бізнесу</h5>
+            <p class="small">Наша CRM допомагає масштабуватися та збільшувати прибуток.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-dark p-4 text-center">
+            <div class="mb-3">
+              <img src="{{ url_for('static',filename='img/icon-partnership.png') }}" alt="Партнерство" width="40">
+            </div>
+            <h5>Надійне партнерство</h5>
+            <p class="small">Ми будуємо довгострокові відносини на взаємній довірі.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-orange p-4 text-center">
+            <div class="mb-3">
+              <img src="{{ url_for('static',filename='img/icon-global.png') }}" alt="Глобально" width="40">
+            </div>
+            <h5>Глобальні можливості</h5>
+            <p class="small">Працюйте без обмежень: інтеграції, міжнародна доставка, підтримка.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS SECTION -->
+  <section class="partners py-5 bg-white">
+    <div class="container">
+      <div class="d-flex justify-content-center align-items-center flex-wrap">
+        <img src="{{ url_for('static', filename='img/adidas.png') }}"   alt="Adidas">
+        <img src="{{ url_for('static', filename='img/fedex.png') }}"    alt="FedEx">
+        <img src="{{ url_for('static', filename='img/suntra.png') }}"   alt="Suntra">
+        <img src="{{ url_for('static', filename='img/uplifty.png') }}"  alt="Uplifty">
+        <img src="{{ url_for('static', filename='img/brusmark.png') }}" alt="Brusmark">
+        <img src="{{ url_for('static', filename='img/amazon.png') }}"   alt="Amazon">
+        <img src="{{ url_for('static', filename='img/company.png') }}"  alt="Company">
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

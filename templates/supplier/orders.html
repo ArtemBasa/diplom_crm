@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Замовлення{% endblock %}
+{% block content %}
+<div class="container py-5">
+
+  <!-- Оранжева стрілка «Назад» -->
+  <a href="{{ url_for('supplier_dashboard') }}"
+     class="mb-3 d-inline-flex align-items-center"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    <!-- Юнікод-стрілка, але можна замінити на <i class="bi bi-arrow-left"></i> -->
+    ←
+    <span class="ms-2">Назад</span>
+  </a>
+
+  <table class="table">
+    <thead class="table-light">
+      <tr>
+        <th>#</th>
+        <th>Товар</th>
+        <th>Дропшипер</th>
+        <th>К-сть</th>
+        <th>Статус</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in orders %}
+        <tr>
+          <td>{{ o.id }}</td>
+          <td>{{ o.product_name }}</td>
+          <td>{{ o.dropshipper }}</td>
+          <td>{{ o.quantity }}</td>
+          <td>{{ o.status }}</td>
+          <td>
+            <a class="btn btn-sm btn-secondary"
+               href="{{ url_for('supplier_order_detail', oid=o.id) }}">Деталі</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

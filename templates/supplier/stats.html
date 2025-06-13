@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Статистика постачальника{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <a href="{{ url_for('supplier_dashboard') }}"
+     class="mb-3 d-inline-flex align-items-center"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    <!-- Юнікод-стрілка, але можна замінити на <i class="bi bi-arrow-left"></i> -->
+    ←
+    <span class="ms-2">Назад</span>
+  </a>
+  <h2 class="mb-4">Статистика продаж</h2>
+
+  <div class="row mb-5">
+    <div class="col-md-4">
+      <div class="card text-center shadow-sm mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Загальний дохід</h5>
+          <p class="fs-4 fw-bold">{{ total_revenue }} грн</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center shadow-sm mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Всього позицій</h5>
+          <p class="fs-4 fw-bold">{{ total_items }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center shadow-sm mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Всього замовлень</h5>
+          <p class="fs-4 fw-bold">{{ total_orders }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="mb-3">Дохід за товарами</h4>
+  <canvas id="revenueChart" height="100"></canvas>
+</div>
+
+<script>
+  const ctx = document.getElementById('revenueChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{ chart_labels|safe }},
+      datasets: [{
+        label: 'Дохід, грн',
+        data: {{ chart_data|safe }},
+        backgroundColor: 'rgba(255,102,0,0.6)',
+        borderColor: 'rgba(255,102,0,1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
+{% endblock %}

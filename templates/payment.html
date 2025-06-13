@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Оплата замовлення #{{ order.id }}{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width: 400px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title mb-4">Оплата замовлення #{{ order.id }}</h3>
+      <p>Товар: <strong>{{ order.name }}</strong></p>
+      <p>Сума до сплати: <strong>{{ '%.2f'|format((order.price-order.discount)*order.quantity) }} грн</strong></p>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Номер карти</label>
+          <input type="text" class="form-control" placeholder="•••• •••• •••• ••••" disabled>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Термін дії</label>
+          <input type="text" class="form-control" placeholder="MM/YY" disabled>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">CVC</label>
+          <input type="text" class="form-control" placeholder="•••" disabled>
+        </div>
+        <button type="submit" class="btn btn-register w-100">Підтвердити оплату</button>
+      </form>
+      <p class="text-center text-muted mt-3 small">Дякую за оплату.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{# templates/privacy_choices.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">{{ title }}</h1>
+  <p>У цьому розділі ви можете налаштувати власні уподобання щодо обробки ваших персональних даних та cookie.</p>
+
+  <form>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="choice_marketing" checked>
+      <label class="form-check-label" for="choice_marketing">
+        Погоджуюся на отримання маркетингових розсилок
+      </label>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="choice_analytics" checked>
+      <label class="form-check-label" for="choice_analytics">
+        Дозволяю збір аналітичних даних (Google Analytics)
+      </label>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="choice_functional">
+      <label class="form-check-label" for="choice_functional">
+        Дозволяю використання функціональних cookie (запам’ятовування налаштувань)
+      </label>
+    </div>
+    <div class="form-check mb-4">
+      <input class="form-check-input" type="checkbox" id="choice_ads">
+      <label class="form-check-label" for="choice_ads">
+        Відмовляюся від персоналізованої реклами
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Зберегти налаштування</button>
+  </form>
+</div>
+{% endblock %}

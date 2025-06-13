@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Мої замовлення{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <a href="{{ url_for('dropshipper_dashboard') }}"
+     class="d-inline-flex align-items-center mb-4"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    ←<span class="ms-2">Назад</span>
+  </a>
+  <table class="table">
+    <tr><th>#</th><th>Товар</th><th>К-сть</th><th>Статус</th><th>Оплачено</th><th></th></tr>
+    {% for o in orders %}
+      <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.name }}</td>
+        <td>{{ o.quantity }}</td>
+        <td>{{ o.status }}</td>
+        <td>{{ 'Так' if o.paid else 'Ні' }}</td>
+        <td>
+          <a class="btn btn-sm btn-secondary"
+             href="{{ url_for('dropshipper_order_detail', oid=o.id) }}">Деталі</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

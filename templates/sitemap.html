@@ -1,0 +1,29 @@
+{# templates/sitemap.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">{{ title }}</h1>
+  <p>Каркасна карта сайту допоможе швидко орієнтуватися у розділах Arka.cRm:</p>
+  <ul class="list-unstyled">
+    <li><a href="{{ url_for('index') }}">Головна</a></li>
+    <li><a href="{{ url_for('shop') }}">Онлайн-магазин</a></li>
+    {% if session.user_id and session.role == 'Supplier' %}
+      <li><a href="{{ url_for('supplier_dashboard') }}">Панель постачальника</a></li>
+      <li><a href="{{ url_for('supplier_products') }}">Мої товари</a></li>
+      <li><a href="{{ url_for('supplier_orders') }}">Замовлення постачальника</a></li>
+    {% endif %}
+    {% if session.user_id and session.role == 'Dropshipper' %}
+      <li><a href="{{ url_for('dropshipper_dashboard') }}">Панель дропшипера</a></li>
+      <li><a href="{{ url_for('dropshipper_products') }}">Каталог товарів</a></li>
+      <li><a href="{{ url_for('dropshipper_orders') }}">Мої замовлення</a></li>
+    {% endif %}
+    <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
+    <li><a href="{{ url_for('privacy_policy') }}">Privacy Policy</a></li>
+    <li><a href="{{ url_for('privacy_choices') }}">Privacy Choices</a></li>
+    <li><a href="{{ url_for('sitemap') }}">Sitemap</a></li>
+  </ul>
+</div>
+{% endblock %}

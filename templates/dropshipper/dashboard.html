@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Панель дропшипера{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Дашборд Дропшипера</h2>
+  <div class="row g-4">
+    <!-- Каталог товарів -->
+    <div class="col-md-4">
+      <a href="{{ url_for('dropshipper_products') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-th-list fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Каталог товарів</h5>
+            <p class="card-text">Переглядайте всі доступні товари з фотографіями, описом, залишками та цінами.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Мої замовлення -->
+    <div class="col-md-4">
+      <a href="{{ url_for('dropshipper_orders') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-shopping-bag fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Мої замовлення</h5>
+            <p class="card-text">Швидко оформіть замовлення та відстежуйте їхній статус прямо в кабінеті.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Статистика -->
+    <div class="col-md-4">
+      <a href="{{ url_for('dropshipper_stats') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-chart-bar fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Статистика</h5>
+            <p class="card-text">Переглядайте звіти по вашим замовленням, сумам і кількості.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

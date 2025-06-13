@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Панель постачальника{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Дашборд Постачальника</h2>
+  <div class="row g-4">
+    <!-- Товари -->
+    <div class="col-md-3">
+      <a href="{{ url_for('supplier_products') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-box-open fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Товари</h5>
+            <p class="card-text">Управління товарами</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Замовлення -->
+    <div class="col-md-3">
+      <a href="{{ url_for('supplier_orders') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-shopping-cart fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Замовлення</h5>
+            <p class="card-text">Управління замовленнями</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Статистика -->
+    <div class="col-md-3">
+      <a href="{{ url_for('supplier_stats') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-chart-line fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Статистика</h5>
+            <p class="card-text">Звіти і графіки</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Відгуки -->
+    <div class="col-md-3">
+      <a href="{{ url_for('supplier_reviews') }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-star fa-3x mb-3 text-brand"></i>
+            <h5 class="card-title">Відгуки</h5>
+            <p class="card-text">Переглянути відгуки</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

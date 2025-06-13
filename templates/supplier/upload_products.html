@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Масове завантаження{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:400px;">
+    <a href="{{ url_for('supplier_dashboard') }}"
+     class="mb-3 d-inline-flex align-items-center"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    <!-- Юнікод-стрілка, але можна замінити на <i class="bi bi-arrow-left"></i> -->
+    ←
+    <span class="ms-2">Назад</span>
+  </a>
+  <form method="post" enctype="multipart/form-data">
+    <div class="mb-3"><input class="form-control" type="file" name="file" required></div>
+    <button class="btn btn-register w-100">Завантажити CSV</button>
+  </form>
+</div>
+{% endblock %}

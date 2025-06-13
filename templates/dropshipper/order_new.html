@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Нове замовлення{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:500px;">
+  <!-- Оранжева стрілка «Назад» -->
+  <a href="{{ url_for('dropshipper_dashboard') }}"
+     class="d-inline-flex align-items-center mb-4"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    ←<span class="ms-2">Назад</span>
+  </a>
+  <h4>{{ product.name }}</h4>
+  <form method="post">
+    <div class="mb-3"><label class="form-label">Кількість</label><input class="form-control" name="quantity" value="1"></div>
+    <div class="mb-3"><label class="form-label">Ім’я отримувача</label><input class="form-control" name="recipient"></div>
+    <div class="mb-3"><label class="form-label">Адреса</label><input class="form-control" name="address"></div>
+    <div class="mb-3"><label class="form-label">Коментар</label><textarea class="form-control" name="comment"></textarea></div>
+    <button class="btn btn-register">Оформити</button>
+  </form>
+</div>
+{% endblock %}

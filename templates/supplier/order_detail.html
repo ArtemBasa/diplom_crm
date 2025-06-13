@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Замовлення #{{ order.id }}{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:500px;">
+    <a href="{{ url_for('supplier_dashboard') }}"
+     class="mb-3 d-inline-flex align-items-center"
+     style="color: orange; text-decoration: none; font-size: 1.1rem;">
+    <!-- Юнікод-стрілка, але можна замінити на <i class="bi bi-arrow-left"></i> -->
+    ←
+    <span class="ms-2">Назад</span>
+  </a>
+  <h4>Замовлення #{{ order.id }}</h4>
+  <p><strong>Товар:</strong> {{ order.name }}</p>
+  <p><strong>Кількість:</strong> {{ order.quantity }}</p>
+  <p><strong>Коментар дропшипера:</strong> {{ order.comment or '—' }}</p>
+
+  <p>
+    <strong>Оплачено:</strong>
+    {% if order.paid %}
+      <span class="badge bg-success">Так</span>
+    {% else %}
+      <span class="badge bg-danger">Ні</span>
+    {% endif %}
+  </p>
+
+  <p>
+    <strong>ТТН Нова Почта:</strong>
+    <span class="fw-bold">{{ order.tracking_number }}</span>
+  </p>
+
+  <form method="post" class="mt-4">
+    <div class="mb-3">
+      <label class="form-label">Статус замовлення</label>
+      <select class="form-select" name="status">
+        {% for s in ['new','in_process','sent','delivered','canceled'] %}
+          <option value="{{ s }}" {% if order.status==s %}selected{% endif %}>
+            {{ s }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <button class="btn btn-register">Оновити статус</button>
+  </form>
+</div>
+{% endblock %}
