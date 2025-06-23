@@ -3,10 +3,11 @@
 {% block title %}Головна{% endblock %}
 
 {% block content %}
-  <!-- HERO IMAGE -->
-  <div class="container-fluid p-0">
+  <!-- HERO IMAGE: отступ сверху 10px + 100vh -->
+  <div class="container-fluid p-0" style="margin-top:10px; height:100vh; overflow:hidden;">
     <img src="{{ url_for('static', filename='img/hero.png') }}"
-         class="img-fluid w-100" alt="Hero">
+         alt="Hero"
+         style="width:100%; height:100%; object-fit:cover;">
   </div>
 
   <!-- WHY US SECTION -->
@@ -70,5 +71,4 @@
       </div>
     </div>
   </section>
-
 {% endblock %}
